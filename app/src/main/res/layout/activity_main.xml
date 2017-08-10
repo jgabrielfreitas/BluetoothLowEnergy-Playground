@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,36 +7,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.jgabrielfreitas.bleplayground.MainActivity"
     >
 
-  <FrameLayout
-      android:id="@+id/content"
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="1"
-      >
-
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/title_home"
-        />
-
-  </FrameLayout>
-
-  <android.support.design.widget.BottomNavigationView
-      android:id="@+id/navigation"
-      android:layout_width="match_parent"
+  <!--<ListView-->
+      <!--android:id="@+id/bluetoothDevicesListView"-->
+      <!--android:layout_width="match_parent"-->
+      <!--android:layout_height="match_parent"-->
+      <!--android:layout_alignParentLeft="true"-->
+      <!--android:layout_alignParentStart="true"-->
+      <!--android:layout_alignParentTop="true"-->
+      <!--/>-->
+  <Button
+      android:id="@+id/stopButton"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_gravity="bottom"
-      android:background="?android:attr/windowBackground"
-      app:menu="@menu/navigation"
+      android:layout_alignParentTop="true"
+      android:layout_toEndOf="@+id/startButton"
+      android:layout_toRightOf="@+id/startButton"
+      android:text="Stop"
       />
-
-</LinearLayout>
+  <Button
+      android:id="@+id/startButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:text="Start"
+      />
+  <ProgressBar
+      android:id="@+id/progressBar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+      android:layout_below="@+id/startButton"
+      android:layout_marginTop="127dp"
+      style="?android:attr/progressBarStyleHorizontal"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentEnd="true"
+      />
+</RelativeLayout>
