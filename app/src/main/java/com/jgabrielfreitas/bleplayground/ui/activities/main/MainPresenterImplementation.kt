@@ -1,18 +1,23 @@
 package com.jgabrielfreitas.bleplayground.ui.activities.main
 
-import android.content.Context
-import com.jgabrielfreitas.bleplayground.extensions.toast
+import com.jgabrielfreitas.bleplayground.ui.activities.main.MainPresenter.View
 
 /**
  * Created by JGabrielFreitas on 10/08/17.
  */
-class MainPresenterImplementation(var context: Context): MainPresenter {
+class MainPresenterImplementation(var view: View?, var interactor: MainInteractor) : MainPresenter {
 
-  override fun startLoad() {
-
+  override fun startClicked() {
+    view!!.startLoad()
+    interactor.startSearch()
   }
 
-  override fun stopLoad() {
-    context.toast("stop load")
+  override fun stopClicked() {
+    view!!.stopLoad()
   }
+
+  override fun onDestroy() {
+    view = null
+  }
+
 }

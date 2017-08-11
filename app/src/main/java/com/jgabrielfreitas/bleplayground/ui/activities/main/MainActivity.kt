@@ -1,29 +1,37 @@
 package com.jgabrielfreitas.bleplayground.ui.activities.main
 
-import android.widget.ProgressBar
-import butterknife.OnClick
-import com.jgabrielfreitas.bleplayground.R
+import android.os.Bundle
 import com.jgabrielfreitas.bleplayground.R.layout.activity_main
-import com.jgabrielfreitas.bleplayground.ui.activities.main.MainPresenter.View
 import com.jgabrielfreitas.core.activity.BaseActivity
 import com.jgabrielfreitas.layoutid.annotations.InjectLayout
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.progressBar
+import kotlinx.android.synthetic.main.activity_main.startButton
+import kotlinx.android.synthetic.main.activity_main.stopButton
+import android.view.View.GONE as gone
+import android.view.View.VISIBLE as visible
+import com.jgabrielfreitas.bleplayground.ui.activities.main.MainPresenter.View as MainView
 
 @InjectLayout(layout = activity_main)
-class MainActivity : BaseActivity(), View{
+class MainActivity : BaseActivity(), MainView {
 
-  val presenter: MainPresenter = MainPresenterImplementation(this)
+  lateinit var presenter: MainPresenter
 
-  @OnClick(R.id.startButton)
-  fun startLoad(){
-    presenter.startLoad()
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    presenter = MainPresenterImplementation(this, MainInteractorImplementation())
+    startButton.setOnClickListener { presenter.startClicked() }
+    stopButton.setOnClickListener { presenter.stopClicked() }
   }
 
-  @OnClick(R.id.stopButton)
-  fun stopLoad(){
-    presenter.stopLoad()
+  override fun startLoad() {
+    progressBar.visibility = visible
   }
 
-  override fun getProgressBar(): ProgressBar = progressBar
+  override fun stopLoad() {
+    progressBar.visibility = gone
+  }
+
+  override fun listUpdate() {
+  }
 
 }

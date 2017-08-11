@@ -1,20 +1,26 @@
 package com.jgabrielfreitas.bleplayground.ui.activities.main
 
 import android.content.Context
-import android.widget.ProgressBar
 
 /**
  * Created by JGabrielFreitas on 10/08/17.
  */
 interface MainPresenter {
 
-  fun startLoad()
+  fun startClicked()
 
-  fun stopLoad()
+  fun stopClicked()
 
+  fun onDestroy()
 
   interface View {
-    fun getProgressBar(): ProgressBar
+
+    fun startLoad()
+
+    fun stopLoad()
+
+    fun listUpdate()
+
   }
 
 }
