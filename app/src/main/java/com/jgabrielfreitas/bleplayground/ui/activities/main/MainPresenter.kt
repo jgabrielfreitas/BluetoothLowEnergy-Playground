@@ -7,20 +7,14 @@ import android.content.Context
  */
 interface MainPresenter {
 
+  fun onResume()
+
   fun startClicked()
 
   fun stopClicked()
 
+  fun onItemClicked(position: Int)
+
   fun onDestroy()
-
-  interface View {
-
-    fun startLoad()
-
-    fun stopLoad()
-
-    fun listUpdate()
-
-  }
 
 }
