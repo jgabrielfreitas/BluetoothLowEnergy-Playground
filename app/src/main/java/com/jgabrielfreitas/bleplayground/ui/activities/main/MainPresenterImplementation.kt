@@ -1,22 +1,23 @@
 package com.jgabrielfreitas.bleplayground.ui.activities.main
 
-import android.util.Log
+import android.bluetooth.BluetoothDevice
+import com.jgabrielfreitas.bleplayground.extensions.log
 import com.jgabrielfreitas.bleplayground.ui.activities.main.FindBluetoothDevicesInteractor.OnFinishedListener
+import com.jgabrielfreitas.bleplayground.ui.activities.main.FindBluetoothDevicesInteractor.OnNewDeviceFoundListener
 
 
 /**
  * Created by JGabrielFreitas on 10/08/17.
  */
-class MainPresenterImplementation(var view: MainView?, var interactor: MainInteractor) : MainPresenter, OnFinishedListener {
+class MainPresenterImplementation(var view: MainView?, var interactor: MainInteractor) : MainPresenter, OnFinishedListener, OnNewDeviceFoundListener {
 
-  override fun onFinished(items: List<String>) {
+  override fun onFinished() {
     stopClicked()
-    view!!.setItems(items)
   }
 
   override fun onResume() {
-    interactor.setListener(this)
-    view!!.setItems(mutableListOf("No devices"))
+    interactor.setListeners(this, this)
+//    view!!.setItems(mutableListOf("No devices"))
   }
 
   override fun startClicked() {
@@ -29,11 +30,16 @@ class MainPresenterImplementation(var view: MainView?, var interactor: MainInter
   }
 
   override fun onItemClicked(position: Int) {
-    Log.e("position", "Position %d clicked ${position + 1}")
+    log("Position %d clicked ${position + 1}")
   }
 
   override fun onDestroy() {
     view = null
+  }
+
+  override fun addDevice(item: BluetoothDevice) {
+    log("addDevice")
+//    view!!.stopLoad()
   }
 
 }

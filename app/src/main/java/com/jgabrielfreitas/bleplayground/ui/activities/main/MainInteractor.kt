@@ -1,6 +1,7 @@
 package com.jgabrielfreitas.bleplayground.ui.activities.main
 
 import com.jgabrielfreitas.bleplayground.model.bluetooth.LeDevice
+import com.jgabrielfreitas.bleplayground.ui.activities.main.FindBluetoothDevicesInteractor.OnNewDeviceFoundListener
 import com.jgabrielfreitas.bleplayground.ui.activities.main.FindBluetoothDevicesInteractor.OnFinishedListener
 
 /**
@@ -8,7 +9,7 @@ import com.jgabrielfreitas.bleplayground.ui.activities.main.FindBluetoothDevices
  */
 interface MainInteractor {
 
-  fun setListener(listener: OnFinishedListener)
+  fun setListeners(onFinished: OnFinishedListener, onNewDevice: OnNewDeviceFoundListener)
 
   fun startSearch()
 

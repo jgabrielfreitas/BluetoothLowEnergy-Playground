@@ -1,7 +1,5 @@
 package com.jgabrielfreitas.bleplayground.ui.activities.main
 
-import android.content.Context
-
 /**
  * Created by JGabrielFreitas on 10/08/17.
  */

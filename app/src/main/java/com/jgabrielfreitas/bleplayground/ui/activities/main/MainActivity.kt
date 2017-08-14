@@ -4,6 +4,7 @@ import android.R.layout.simple_list_item_1 as simple_list
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import com.jgabrielfreitas.bleplayground.R.layout.activity_main
+import com.jgabrielfreitas.bleplayground.model.bluetooth.LeDevice
 import com.jgabrielfreitas.core.activity.BaseActivity
 import com.jgabrielfreitas.layoutid.annotations.InjectLayout
 import kotlinx.android.synthetic.main.activity_main.bluetoothDevicesListView
@@ -20,7 +21,7 @@ class MainActivity : BaseActivity(), MainView {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    presenter = MainPresenterImplementation(this, MainInteractorImplementation(FindBluetoothDevicesInteractorImplementation()))
+    presenter = MainPresenterImplementation(this, MainInteractorImplementation(FindBluetoothDevicesInteractorImplementation(), this))
     startButton.setOnClickListener { presenter.startClicked() }
     stopButton.setOnClickListener { presenter.stopClicked() }
   }
@@ -33,13 +34,6 @@ class MainActivity : BaseActivity(), MainView {
     progressBar.visibility = gone
   }
 
-  override fun setItems(items: List<String>) {
-    bluetoothDevicesListView.adapter = ArrayAdapter<String>(this, simple_list, items)
-  }
-
-  override fun listUpdate() {
-  }
-
   override fun onResume() {
     super.onResume()
     presenter.onResume()
@@ -50,8 +44,7 @@ class MainActivity : BaseActivity(), MainView {
     super.onDestroy()
   }
 
-  override fun addItem(item: String) {
-    var adapter = bluetoothDevicesListView.adapter
+  override fun addItem(item: LeDevice) {
 
   }
 }
