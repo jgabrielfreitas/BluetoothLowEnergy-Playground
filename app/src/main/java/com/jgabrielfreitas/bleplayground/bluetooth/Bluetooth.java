@@ -24,7 +24,7 @@ public class Bluetooth {
   private OnNewDeviceFoundListener onNewDeviceListener;
   private OnFinishedListener onFinishedListener;
 
-  private static final int ONE_SECOND  = 1000;
+  private static final int ONE_SECOND  = 1_000;
   private static final int SCAN_PERIOD = ONE_SECOND;
 
   private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
