@@ -1,6 +1,6 @@
 package com.jgabrielfreitas.bleplayground.ui.activities.main
 
-import com.jgabrielfreitas.bleplayground.model.bluetooth.LeDevice
+import android.bluetooth.BluetoothDevice
 
 /**
  * Created by JGabrielFreitas on 14/08/17.
@@ -11,5 +11,5 @@ interface MainView {
 
   fun stopLoad()
 
-  fun addItem(item: LeDevice)
+  fun addItem(item: BluetoothDevice)
 }

@@ -19,7 +19,4 @@ class FindBluetoothDevicesInteractorImplementation : FindBluetoothDevicesInterac
     bluetoothManager.startSearch()
   }
 
-  fun getAdapter(): ArrayAdapter<LeDevice> {
-    return bluetoothManager.leDeviceListAdapter
-  }
 }

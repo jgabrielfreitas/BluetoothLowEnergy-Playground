@@ -19,13 +19,12 @@ public class Bluetooth {
 
   private Context context;
   private BluetoothAdapter mBluetoothAdapter;
-  private LeDeviceListAdapter mLeDeviceListAdapter;
   private boolean mScanning;
   private Handler mHandler;
   private OnNewDeviceFoundListener onNewDeviceListener;
   private OnFinishedListener onFinishedListener;
 
-  private static final int ONE_SECOND = 1000;
+  private static final int ONE_SECOND  = 1000;
   private static final int SCAN_PERIOD = ONE_SECOND;
 
   private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
@@ -33,9 +32,9 @@ public class Bluetooth {
       if (context instanceof Activity) {
         ((Activity) context).runOnUiThread(new Runnable() {
           @Override public void run() {
-            mLeDeviceListAdapter.addDevice(device);
-            mLeDeviceListAdapter.notifyDataSetChanged();
-            Log.e("device", device.getAddress());
+            //lowEnergyDeviceListAdapter.addDevice(device);
+            //lowEnergyDeviceListAdapter.notifyDataSetChanged();
+            //Log.e("device", device.getAddress());
             onNewDeviceListener.addDevice(device);
           }
         });
@@ -48,17 +47,12 @@ public class Bluetooth {
     final BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
     this.mBluetoothAdapter = bluetoothManager.getAdapter();
     this.mHandler = new Handler();
-    this.mLeDeviceListAdapter = new LeDeviceListAdapter(context, android.R.layout.simple_list_item_1);
     this.onNewDeviceListener = onNewDeviceListener;
     this.onFinishedListener = onFinishedListener;
   }
 
   public void startSearch(){
     scanLeDevice(true);
-  }
-
-  public LeDeviceListAdapter getLeDeviceListAdapter() {
-    return mLeDeviceListAdapter;
   }
 
   private void scanLeDevice(final boolean enable) {

@@ -38,8 +38,7 @@ class MainPresenterImplementation(var view: MainView?, var interactor: MainInter
   }
 
   override fun addDevice(item: BluetoothDevice) {
-    log("addDevice")
-//    view!!.stopLoad()
+    view!!.addItem(item)
   }
 
 }
