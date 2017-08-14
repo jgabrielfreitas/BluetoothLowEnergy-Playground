@@ -12,4 +12,6 @@ interface MainView {
   fun stopLoad()
 
   fun addItem(item: BluetoothDevice)
+
+  fun displayMessage(message: String)
 }

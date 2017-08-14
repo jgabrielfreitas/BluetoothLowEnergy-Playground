@@ -1,7 +1,7 @@
 package com.jgabrielfreitas.bleplayground.ui.activities.main
 
 import android.bluetooth.BluetoothDevice
-import com.jgabrielfreitas.bleplayground.extensions.log
+import com.jgabrielfreitas.bleplayground.model.bluetooth.LeDevice
 import com.jgabrielfreitas.bleplayground.ui.activities.main.FindBluetoothDevicesInteractor.OnFinishedListener
 import com.jgabrielfreitas.bleplayground.ui.activities.main.FindBluetoothDevicesInteractor.OnNewDeviceFoundListener
 
@@ -17,7 +17,6 @@ class MainPresenterImplementation(var view: MainView?, var interactor: MainInter
 
   override fun onResume() {
     interactor.setListeners(this, this)
-//    view!!.setItems(mutableListOf("No devices"))
   }
 
   override fun startClicked() {
@@ -29,8 +28,8 @@ class MainPresenterImplementation(var view: MainView?, var interactor: MainInter
     view!!.stopLoad()
   }
 
-  override fun onItemClicked(position: Int) {
-    log("Position %d clicked ${position + 1}")
+  override fun onItemClicked(position: Int, device: LeDevice) {
+    view!!.displayMessage("Device ${device.macAddress}")
   }
 
   override fun onDestroy() {
