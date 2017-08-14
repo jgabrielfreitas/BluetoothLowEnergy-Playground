@@ -32,9 +32,6 @@ public class Bluetooth {
       if (context instanceof Activity) {
         ((Activity) context).runOnUiThread(new Runnable() {
           @Override public void run() {
-            //lowEnergyDeviceListAdapter.addDevice(device);
-            //lowEnergyDeviceListAdapter.notifyDataSetChanged();
-            //Log.e("device", device.getAddress());
             onNewDeviceListener.addDevice(device);
           }
         });
