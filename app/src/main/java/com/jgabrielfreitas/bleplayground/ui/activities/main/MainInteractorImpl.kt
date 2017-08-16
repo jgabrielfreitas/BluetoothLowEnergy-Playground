@@ -6,9 +6,9 @@ import com.jgabrielfreitas.bleplayground.ui.activities.main.FindBluetoothDevices
 import com.jgabrielfreitas.bleplayground.ui.activities.main.FindBluetoothDevicesInteractor.OnNewDeviceFoundListener
 
 /**
- * Created by JGabrielFreitas on 11/08/17.
+ * Created by JGabrielFreitas on 11/08/17zz.
  */
-class MainInteractorImplementation(var findDevices: FindBluetoothDevicesInteractor, var context: Context) : MainInteractor {
+class MainInteractorImpl(var findDevices: FindBluetoothDevicesInteractor, var context: Context) : MainInteractor {
 
   lateinit var onFinishedListener: OnFinishedListener
   lateinit var newDeviceListener : OnNewDeviceFoundListener

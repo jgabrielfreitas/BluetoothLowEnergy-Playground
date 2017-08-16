@@ -6,7 +6,7 @@ import com.jgabrielfreitas.bleplayground.bluetooth.BluetoothLowEnergy
 /**
  * Created by JGabrielFreitas on 14/08/17.
  */
-class FindBluetoothDevicesInteractorImplementation : FindBluetoothDevicesInteractor {
+class FindBluetoothDevicesInteractorImpl : FindBluetoothDevicesInteractor {
 
   lateinit var bluetoothLowEnergyManager: BluetoothLowEnergy
 

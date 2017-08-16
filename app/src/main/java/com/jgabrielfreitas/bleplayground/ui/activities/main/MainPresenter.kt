@@ -9,9 +9,11 @@ interface MainPresenter {
 
   fun onResume()
 
-  fun startClicked()
+  fun startSearch()
 
-  fun stopClicked()
+  fun stopSearch()
+
+  fun cleanSearch()
 
   fun onItemClicked(position: Int, device: LeDevice)
 

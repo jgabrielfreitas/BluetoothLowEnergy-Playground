@@ -9,18 +9,20 @@ import com.jgabrielfreitas.bleplayground.ui.activities.main.FindBluetoothDevices
 /**
  * Created by JGabrielFreitas on 10/08/17.
  */
-class MainPresenterImplementation(var view: MainView?, var interactor: MainInteractor) : MainPresenter, OnFinishedListener, OnNewDeviceFoundListener {
+class MainPresenterImpl(var view: MainView?, var interactor: MainInteractor) : MainPresenter, OnFinishedListener, OnNewDeviceFoundListener {
 
-  override fun onFinished() = stopClicked()
+  override fun onFinished() = stopSearch()
 
   override fun onResume() = interactor.setListeners(this, this)
 
-  override fun startClicked() {
+  override fun startSearch() {
     view!!.startLoad()
     interactor.startSearch()
   }
 
-  override fun stopClicked() = view!!.stopLoad()
+  override fun stopSearch() = view!!.stopLoad()
+
+  override fun cleanSearch() = view!!.cleanSearch()
 
   override fun onItemClicked(position: Int, device: LeDevice) = view!!.displayMessage("Device ${device.macAddress}")
 
@@ -28,6 +30,8 @@ class MainPresenterImplementation(var view: MainView?, var interactor: MainInter
     view = null
   }
 
-  override fun addDevice(item: BluetoothDevice) = view!!.addItem(item)
+  override fun addDevice(item: BluetoothDevice) {
+    if (item.name != null) { view!!.addItem(item) }
+  }
 
 }

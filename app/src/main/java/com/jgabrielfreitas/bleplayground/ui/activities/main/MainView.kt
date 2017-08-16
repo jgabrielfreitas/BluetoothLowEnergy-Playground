@@ -11,6 +11,8 @@ interface MainView {
 
   fun stopLoad()
 
+  fun cleanSearch()
+
   fun addItem(item: BluetoothDevice)
 
   fun displayMessage(message: String)

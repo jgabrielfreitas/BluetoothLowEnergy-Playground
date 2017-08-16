@@ -5,20 +5,21 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
-import com.jgabrielfreitas.bleplayground.R.layout.activity_main
+import com.jgabrielfreitas.bleplayground.R.layout.activity_main_refactor
 import com.jgabrielfreitas.bleplayground.adapter.LeDeviceListAdapter
 import com.jgabrielfreitas.bleplayground.extensions.toast
 import com.jgabrielfreitas.core.activity.BaseActivity
 import com.jgabrielfreitas.layoutid.annotations.InjectLayout
-import kotlinx.android.synthetic.main.activity_main.bluetoothDevicesListView
-import kotlinx.android.synthetic.main.activity_main.progressBar
-import kotlinx.android.synthetic.main.activity_main.startButton
-import kotlinx.android.synthetic.main.activity_main.stopButton
+import kotlinx.android.synthetic.main.activity_main_refactor.bluetoothDevicesListView
+import kotlinx.android.synthetic.main.activity_main_refactor.cleanResultsButton
+import kotlinx.android.synthetic.main.activity_main_refactor.progressBar
+import kotlinx.android.synthetic.main.activity_main_refactor.startButton
+import kotlinx.android.synthetic.main.activity_main_refactor.stopButton
 import android.R.layout.simple_list_item_1 as simple_list
-import android.view.View.GONE as gone
+import android.view.View.INVISIBLE as invisible
 import android.view.View.VISIBLE as visible
 
-@InjectLayout(layout = activity_main)
+@InjectLayout(layout = activity_main_refactor)
 class MainActivity : BaseActivity(), MainView, OnItemClickListener {
 
   lateinit var presenter: MainPresenter
@@ -26,10 +27,11 @@ class MainActivity : BaseActivity(), MainView, OnItemClickListener {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    presenter = MainPresenterImplementation(this, MainInteractorImplementation(FindBluetoothDevicesInteractorImplementation(), this))
-    lowEnergyDeviceListAdapter = LeDeviceListAdapter(this, simple_list)
-    startButton.setOnClickListener { presenter.startClicked() }
-    stopButton.setOnClickListener { presenter.stopClicked() }
+    presenter = MainPresenterImpl(this, MainInteractorImpl(FindBluetoothDevicesInteractorImpl(), this))
+    lowEnergyDeviceListAdapter = instanceNewAdapter()
+    startButton.setOnClickListener { presenter.startSearch() }
+    stopButton.setOnClickListener { presenter.stopSearch() }
+    cleanResultsButton.setOnClickListener { presenter.cleanSearch() }
 
     bluetoothDevicesListView.adapter = lowEnergyDeviceListAdapter
     bluetoothDevicesListView.onItemClickListener = this
@@ -40,7 +42,14 @@ class MainActivity : BaseActivity(), MainView, OnItemClickListener {
   }
 
   override fun stopLoad() {
-    progressBar.visibility = gone
+    progressBar.visibility = invisible
+  }
+
+  override fun cleanSearch() {
+    with(lowEnergyDeviceListAdapter) {
+      clear()
+      notifyDataSetChanged()
+    }
   }
 
   override fun onResume() {
@@ -63,4 +72,7 @@ class MainActivity : BaseActivity(), MainView, OnItemClickListener {
   }
 
   override fun displayMessage(message: String) = toast(message)
+
+  fun instanceNewAdapter() = LeDeviceListAdapter(this, simple_list)
+
 }
