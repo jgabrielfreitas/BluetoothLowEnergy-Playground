@@ -8,7 +8,7 @@ import android.content.Context
  */
 interface FindBluetoothDevicesInteractor {
 
-  fun findDevices(newDeviceFound: OnNewDeviceFoundListener, onFinished: OnFinishedListener, context: Context)
+  fun findDevices(interactor: MainInteractor, context: Context)
 
   interface OnFinishedListener {
     fun onFinished()

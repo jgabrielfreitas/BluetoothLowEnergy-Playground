@@ -62,7 +62,5 @@ class MainActivity : BaseActivity(), MainView, OnItemClickListener {
     presenter.onItemClicked(position, lowEnergyDeviceListAdapter.getItem(position))
   }
 
-  override fun displayMessage(message: String) {
-    toast(message)
-  }
+  override fun displayMessage(message: String) = toast(message)
 }

@@ -1,8 +1,8 @@
 package com.jgabrielfreitas.bleplayground.ui.activities.main
 
-import com.jgabrielfreitas.bleplayground.model.bluetooth.LeDevice
-import com.jgabrielfreitas.bleplayground.ui.activities.main.FindBluetoothDevicesInteractor.OnNewDeviceFoundListener
+import android.bluetooth.BluetoothDevice
 import com.jgabrielfreitas.bleplayground.ui.activities.main.FindBluetoothDevicesInteractor.OnFinishedListener
+import com.jgabrielfreitas.bleplayground.ui.activities.main.FindBluetoothDevicesInteractor.OnNewDeviceFoundListener
 
 /**
  * Created by JGabrielFreitas on 11/08/17.
@@ -15,6 +15,6 @@ interface MainInteractor {
 
   fun stopSearch()
 
-  fun addDevice(device: LeDevice)
+  fun addDevice(device: BluetoothDevice)
 
 }
