@@ -1,6 +1,6 @@
 package com.jgabrielfreitas.bleplayground.ui.activities.main
 
-import com.jgabrielfreitas.bleplayground.model.bluetooth.LeDevice
+import android.bluetooth.BluetoothDevice
 
 /**
  * Created by JGabrielFreitas on 10/08/17.
@@ -15,7 +15,7 @@ interface MainPresenter {
 
   fun cleanSearch()
 
-  fun onItemClicked(position: Int, device: LeDevice)
+  fun onItemClicked(position: Int, device: BluetoothDevice)
 
   fun onDestroy()
 

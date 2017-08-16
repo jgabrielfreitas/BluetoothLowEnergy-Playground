@@ -23,7 +23,7 @@ class MainActivity : BaseActivity(), MainView {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     presenter = MainPresenterImpl(this, MainInteractorImpl(FindBluetoothDevicesInteractorImpl(), this))
-    lowEnergyDeviceListAdapter = instanceNewAdapter()
+    lowEnergyDeviceListAdapter = LeDeviceListAdapter(this, simple_list)
     startButton.setOnClickListener { presenter.startSearch() }
     stopButton.setOnClickListener { presenter.stopSearch() }
     cleanResultsButton.setOnClickListener { presenter.cleanSearch() }
@@ -67,7 +67,5 @@ class MainActivity : BaseActivity(), MainView {
   }
 
   override fun displayMessage(message: String) = toast(message)
-
-  fun instanceNewAdapter() = LeDeviceListAdapter(this, simple_list)
 
 }

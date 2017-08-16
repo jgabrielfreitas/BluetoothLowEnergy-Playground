@@ -1,7 +1,6 @@
 package com.jgabrielfreitas.bleplayground.ui.activities.main
 
 import android.bluetooth.BluetoothDevice
-import com.jgabrielfreitas.bleplayground.model.bluetooth.LeDevice
 import com.jgabrielfreitas.bleplayground.ui.activities.main.FindBluetoothDevicesInteractor.OnFinishedListener
 import com.jgabrielfreitas.bleplayground.ui.activities.main.FindBluetoothDevicesInteractor.OnNewDeviceFoundListener
 
@@ -28,7 +27,7 @@ class MainPresenterImpl(var view: MainView?, var interactor: MainInteractor) : M
 
   override fun cleanSearch() = view!!.cleanSearch()
 
-  override fun onItemClicked(position: Int, device: LeDevice) = view!!.displayMessage("Device ${device.macAddress}")
+  override fun onItemClicked(position: Int, device: BluetoothDevice) = view!!.displayMessage("Device ${device.address}")
 
   override fun onDestroy() {
     view = null

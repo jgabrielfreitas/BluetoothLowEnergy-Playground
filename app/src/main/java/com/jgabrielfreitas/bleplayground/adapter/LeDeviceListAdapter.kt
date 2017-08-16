@@ -4,13 +4,12 @@ import android.bluetooth.BluetoothDevice
 import android.content.Context
 import android.support.annotation.LayoutRes
 import android.widget.ArrayAdapter
-import com.jgabrielfreitas.bleplayground.model.bluetooth.LeDevice
 
 /**
  * Created by JGabrielFreitas on 14/08/17.
  */
 
-class LeDeviceListAdapter(context: Context, @LayoutRes resource: Int) : ArrayAdapter<LeDevice>(context, resource) {
+class LeDeviceListAdapter(context: Context, @LayoutRes resource: Int) : ArrayAdapter<BluetoothDevice>(context, resource) {
 
   var leDevices = mutableSetOf<BluetoothDevice>()
 
@@ -18,7 +17,12 @@ class LeDeviceListAdapter(context: Context, @LayoutRes resource: Int) : ArrayAda
 
     if (!leDevices.contains(device)) {
       leDevices.add(device)
-      add(LeDevice(device.name ?: "NO NAME", device.address))
+      add(device)
     }
+  }
+
+  override fun clear() {
+    super.clear()
+    leDevices.clear()
   }
 }
