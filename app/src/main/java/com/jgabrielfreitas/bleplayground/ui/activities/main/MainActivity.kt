@@ -20,7 +20,7 @@ import android.view.View.INVISIBLE as invisible
 import android.view.View.VISIBLE as visible
 
 @InjectLayout(layout = activity_main_refactor)
-class MainActivity : BaseActivity(), MainView, OnItemClickListener {
+class MainActivity : BaseActivity(), MainView {
 
   lateinit var presenter: MainPresenter
   lateinit var lowEnergyDeviceListAdapter: LeDeviceListAdapter
@@ -34,7 +34,7 @@ class MainActivity : BaseActivity(), MainView, OnItemClickListener {
     cleanResultsButton.setOnClickListener { presenter.cleanSearch() }
 
     bluetoothDevicesListView.adapter = lowEnergyDeviceListAdapter
-    bluetoothDevicesListView.onItemClickListener = this
+    bluetoothDevicesListView.setOnItemClickListener(this::onItemClick)
   }
 
   override fun startLoad() {
@@ -67,7 +67,7 @@ class MainActivity : BaseActivity(), MainView, OnItemClickListener {
     lowEnergyDeviceListAdapter.notifyDataSetChanged()
   }
 
-  override fun onItemClick(adapter: AdapterView<*>?, view: View?, position: Int, args: Long) {
+  fun onItemClick(adapter: AdapterView<*>?, view: View?, position: Int, args: Long) {
     presenter.onItemClicked(position, lowEnergyDeviceListAdapter.getItem(position))
   }
 
