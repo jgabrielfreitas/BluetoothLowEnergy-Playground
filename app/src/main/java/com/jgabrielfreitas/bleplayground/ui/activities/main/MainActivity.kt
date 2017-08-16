@@ -4,22 +4,17 @@ import android.bluetooth.BluetoothDevice
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
-import android.widget.AdapterView.OnItemClickListener
-import com.jgabrielfreitas.bleplayground.R.layout.activity_main_refactor
+import com.jgabrielfreitas.bleplayground.R.layout.activity_main
 import com.jgabrielfreitas.bleplayground.adapter.LeDeviceListAdapter
 import com.jgabrielfreitas.bleplayground.extensions.toast
 import com.jgabrielfreitas.core.activity.BaseActivity
 import com.jgabrielfreitas.layoutid.annotations.InjectLayout
-import kotlinx.android.synthetic.main.activity_main_refactor.bluetoothDevicesListView
-import kotlinx.android.synthetic.main.activity_main_refactor.cleanResultsButton
-import kotlinx.android.synthetic.main.activity_main_refactor.progressBar
-import kotlinx.android.synthetic.main.activity_main_refactor.startButton
-import kotlinx.android.synthetic.main.activity_main_refactor.stopButton
+import kotlinx.android.synthetic.main.activity_main.*
 import android.R.layout.simple_list_item_1 as simple_list
 import android.view.View.INVISIBLE as invisible
 import android.view.View.VISIBLE as visible
 
-@InjectLayout(layout = activity_main_refactor)
+@InjectLayout(layout = activity_main)
 class MainActivity : BaseActivity(), MainView {
 
   lateinit var presenter: MainPresenter

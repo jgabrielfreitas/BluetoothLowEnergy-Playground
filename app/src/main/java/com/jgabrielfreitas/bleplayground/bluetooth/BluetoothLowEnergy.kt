@@ -6,7 +6,6 @@ import android.bluetooth.BluetoothAdapter.LeScanCallback
 import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.os.Handler
-import android.util.Log
 import com.jgabrielfreitas.bleplayground.ui.activities.main.MainInteractor
 
 /**
@@ -20,8 +19,8 @@ class BluetoothLowEnergy(private val context: Context, val interactor: MainInter
   val handler: Handler
   val leScanCallback = LeScanCallback { device, _, _ -> if (context is Activity) context.runOnUiThread { interactor.addDevice(device) } }
 
-  val ONE_SECOND = 1000
-  val SCAN_PERIOD = ONE_SECOND
+  val FOUR_SECONDS = 4000
+  val SCAN_PERIOD  = FOUR_SECONDS
 
   init {
     val bluetoothManager = context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
@@ -32,7 +31,6 @@ class BluetoothLowEnergy(private val context: Context, val interactor: MainInter
   fun startSearch() = scanLeDevice(true)
 
   private fun scanLeDevice(enable: Boolean) {
-    Log.e("device", "starting scanLeDevice")
     if (enable) {
       // Stops scanning after a pre-defined scan period.
       handler.postDelayed({
