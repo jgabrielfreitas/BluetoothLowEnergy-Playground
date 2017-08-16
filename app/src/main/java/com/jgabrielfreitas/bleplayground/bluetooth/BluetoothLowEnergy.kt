@@ -19,8 +19,8 @@ class BluetoothLowEnergy(private val context: Context, val interactor: MainInter
   val handler: Handler
   val leScanCallback = LeScanCallback { device, _, _ -> if (context is Activity) context.runOnUiThread { interactor.addDevice(device) } }
 
-  val FOUR_SECONDS = 4000
-  val SCAN_PERIOD  = FOUR_SECONDS
+  val TEN_SECONDS = 10000
+  val SCAN_PERIOD = TEN_SECONDS
 
   init {
     val bluetoothManager = context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager

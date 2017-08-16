@@ -11,7 +11,7 @@ import com.jgabrielfreitas.core.activity.BaseActivity
 import com.jgabrielfreitas.layoutid.annotations.InjectLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import android.R.layout.simple_list_item_1 as simple_list
-import android.view.View.INVISIBLE as invisible
+import android.view.View.GONE as gone
 import android.view.View.VISIBLE as visible
 
 @InjectLayout(layout = activity_main)
@@ -37,7 +37,7 @@ class MainActivity : BaseActivity(), MainView {
   }
 
   override fun stopLoad() {
-    progressBar.visibility = invisible
+    progressBar.visibility = gone
   }
 
   override fun cleanSearch() {

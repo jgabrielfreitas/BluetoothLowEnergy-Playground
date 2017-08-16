@@ -12,5 +12,13 @@ import com.jgabrielfreitas.bleplayground.model.bluetooth.LeDevice
 
 class LeDeviceListAdapter(context: Context, @LayoutRes resource: Int) : ArrayAdapter<LeDevice>(context, resource) {
 
-  fun addDevice(device: BluetoothDevice) = add(LeDevice(device.name?: "NO NAME", device.address))
+  var leDevices = mutableSetOf<BluetoothDevice>()
+
+  fun addDevice(device: BluetoothDevice) {
+
+    if (!leDevices.contains(device)) {
+      leDevices.add(device)
+      add(LeDevice(device.name ?: "NO NAME", device.address))
+    }
+  }
 }

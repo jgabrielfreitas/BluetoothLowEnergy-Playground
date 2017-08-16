@@ -13,9 +13,13 @@ class MainPresenterImpl(var view: MainView?, var interactor: MainInteractor) : M
 
   override fun onFinished() = stopSearch()
 
-  override fun onResume() = interactor.setListeners(this, this)
+  override fun onResume() {
+    interactor.setListeners(this, this)
+    startSearch()
+  }
 
   override fun startSearch() {
+    cleanSearch()
     view!!.startLoad()
     interactor.startSearch()
   }
